@@ -26,6 +26,11 @@ public class TowerOfHanoi {
     // Part 3: Move counter (you'll add this)
     private static int moveCount = 0;
 
+    // the pegs
+    public static ArrayList<Integer> pegA;
+    public static ArrayList<Integer> pegB;
+    public static ArrayList<Integer> pegC;
+
     /**
      * PART 1: Implement the classic Tower of Hanoi solver
      *
@@ -44,10 +49,12 @@ public class TowerOfHanoi {
      */
     public static void moveDisks(int n, char source, char destination, char auxiliary) {
         // TODO: Implement base case
+
         if(n == 1){
             // move from source to dest
             //moveDisks(n, 'A', 'C', 'B');
             System.out.println("Moving disk " + n + " from " + source + " to " + destination);
+
         }
         else {
             // TODO: Implement recursive case (3 steps)
@@ -57,9 +64,11 @@ public class TowerOfHanoi {
 
             // move n-1 to dest
             moveDisks(n - 1, auxiliary,destination,source);
+
         }
-        //displayTowers();
+
        // updateTowers("peg" + source, "peg" + destination,n);
+
         moveCount++;
     }
 
@@ -82,7 +91,37 @@ public class TowerOfHanoi {
         // TODO: Implement tower visualization
         System.out.println("\n");
         System.out.println("--- Tower State ---");
+
         // Display pegs A, B, C and their disks
+
+        System.out.print("A: "); // Peg A
+        for (int i = 0; i < pegA.size(); i++) {
+            System.out.print(pegA.get(i));
+
+            if(pegA.size() > 1 && i != pegA.size() - 1){
+                System.out.print(", ");
+            }
+        }
+        System.out.println("\n");
+
+        System.out.print("B: "); // Peg B
+        for (int i = 0; i < pegB.size(); i++) {
+            System.out.print(pegB.get(i));
+
+            if(pegB.size() > 1 && i != pegB.size() - 1){
+                System.out.print(", ");
+            }
+        }
+        System.out.println("\n");
+
+        System.out.print("C: "); // Peg C
+        for (int i = 0; i < pegC.size(); i++) {
+            System.out.print(pegC.get(i));
+
+            if(pegC.size() > 1 && i != pegC.size() - 1){
+                System.out.print(", ");
+            }
+        }
 
     }
 
@@ -120,11 +159,13 @@ public class TowerOfHanoi {
         }
     }
 
+
+
     public static void main(String[] args) {
         // Pegs
-        ArrayList<Integer> pegA = new ArrayList<>(Arrays.asList(3, 2, 1));
-        ArrayList<Integer> pegB = new ArrayList<>();
-        ArrayList<Integer> pegC = new ArrayList<>();
+        pegA = new ArrayList<>(Arrays.asList(3, 2, 1));
+        pegB = new ArrayList<>();
+        pegC = new ArrayList<>();
 
 
         int n = 3; // Start with 3 disks
@@ -137,6 +178,7 @@ public class TowerOfHanoi {
 
         // Solve the puzzle
         moveDisks(n, 'A', 'C', 'B');
+        displayTowers();
 
         // Display statistics
         printStatistics(n);
