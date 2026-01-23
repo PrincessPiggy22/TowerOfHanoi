@@ -54,6 +54,7 @@ public class TowerOfHanoi {
             // move from source to dest
             //moveDisks(n, 'A', 'C', 'B');
             System.out.println("Moving disk " + n + " from " + source + " to " + destination);
+            displayTowers();
 
         }
         else {
@@ -122,6 +123,7 @@ public class TowerOfHanoi {
                 System.out.print(", ");
             }
         }
+        System.out.println("\n");
 
     }
 
@@ -130,9 +132,29 @@ public class TowerOfHanoi {
      *
      */
 
-    public static void updateTowers(ArrayList<Integer> fromPeg, ArrayList<Integer> toPeg, int disk){
-        fromPeg.remove(Integer.valueOf(disk));
-        toPeg.add(disk);
+    public static void updateTowers(char source, char dest){
+        ArrayList<Integer> sourPeg;
+        ArrayList<Integer> destPeg;
+        
+        if (source == 'A'){
+            sourPeg = pegA;
+        } else if (source == 'B'){
+            sourPeg = pegB;
+        } else{
+            sourPeg = pegC;
+        }
+        
+        if (dest == 'A'){
+            destPeg = pegA;
+        } else if (dest == 'B'){
+            destPeg = pegB;
+        } else{
+            destPeg = pegC;
+        }
+        
+        
+        int disk = sourPeg.remove(sourPeg.size()-1);
+        destPeg.add(disk);
     }
 
 
