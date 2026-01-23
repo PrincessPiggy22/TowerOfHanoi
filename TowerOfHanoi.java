@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * Tower of Hanoi Lab
@@ -170,7 +171,7 @@ public class TowerOfHanoi {
      */
     public static void printStatistics(int n) {
         // TODO: Print statistics
-        System.out.println("\n=== Statistics ===");
+        System.out.println("=== Statistics ===");
         System.out.println("Number of disks: " + n);
         System.out.println("Total moves: " + moveCount);
         System.out.println("Minimum possible moves: " + ((int)Math.pow(2, n) - 1));
@@ -186,8 +187,10 @@ public class TowerOfHanoi {
 
 
     public static void main(String[] args) {
-
-        int n = 3; // Start with 3 disks
+        
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of disks you want to move: ");
+        int n = scanner.nextInt(); 
 
         System.out.println("Tower of Hanoi - " + n + " disks");
         System.out.println("Moving disks from A to C using B\n");
@@ -206,11 +209,12 @@ public class TowerOfHanoi {
         printStatistics(n);
 
         // Test with different numbers of disks
-        System.out.println("\n\n=== Try with 4 disks ===");
-        moveCount = 0;
-        initTowers(4);
-        moveDisks(4, 'A', 'C', 'B');
-        printStatistics(4);
+       // System.out.println("\n\n=== Try with 4 disks ===");
+       // moveCount = 0;
+       // initTowers(4);
+       // moveDisks(4, 'A', 'C', 'B');
+        //printStatistics(4);
+        scanner.close();
 
     }
 }
