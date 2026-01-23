@@ -52,7 +52,7 @@ public class TowerOfHanoi {
 
         if(n == 1){
             // move from source to dest
-            //moveDisks(n, 'A', 'C', 'B');
+
             System.out.println("Moving disk " + n + " from " + source + " to " + destination);
             
             updateTowers(source, destination);
@@ -61,15 +61,13 @@ public class TowerOfHanoi {
         else {
             // TODO: Implement recursive case (3 steps)
             // move n-1 disks to aux
-            moveDisks(n - 1, source,auxiliary, destination);
+            moveDisks(n - 1, source, auxiliary, destination);
             System.out.println("Moving disk " + n + " from " + source + " to " + destination);
-            updateTowers(source, auxiliary);
+            updateTowers(source, destination);
             displayTowers();
 
             // move n-1 to dest
-            moveDisks(n - 1, auxiliary,destination,source);
-            updateTowers(auxiliary,destination);
-            displayTowers();
+            moveDisks(n - 1, auxiliary, destination, source);
 
         }
 
@@ -101,33 +99,13 @@ public class TowerOfHanoi {
         // Display pegs A, B, C and their disks
 
         System.out.println("A: " + pegA); // Peg A
-        //for (int i = 0; i < pegA.size(); i++) {
-          //  System.out.print(pegA.get(i));
-
-         //   if(pegA.size() > 1 && i != pegA.size() - 1){
-              //  System.out.print(", ");
-          //  }
-      //  }
-      //  System.out.println("\n");
+        
 
         System.out.println("B: " + pegB); // Peg B
-        //for (int i = 0; i < pegB.size(); i++) {
-          //  System.out.print(pegB.get(i));
-
-          //  if(pegB.size() > 1 && i != pegB.size() - 1){
-               // System.out.print(", ");
-           // }
-     //   }
-       // System.out.println("\n");
+        
 
         System.out.println("C: " + pegC); // Peg C
-       // for (int i = 0; i < pegC.size(); i++) {
-         //   System.out.print(pegC.get(i));
-
-          //  if(pegC.size() > 1 && i != pegC.size() - 1){
-          //      System.out.print(", ");
-          //  }
-      //  }
+       
         System.out.println("\n");
 
     }
@@ -135,6 +113,8 @@ public class TowerOfHanoi {
     /**
      * Updates the status of the towers
      *
+     * @param source the char of the source peg (where the disk is coming from)
+     * @param dest the char of the destination peg (where the disk is going)
      */
 
     public static void updateTowers(char source, char dest){
@@ -160,6 +140,23 @@ public class TowerOfHanoi {
         
         int disk = sourPeg.remove(sourPeg.size()-1);
         destPeg.add(disk);
+    }
+    
+    /**
+     * Initializes the pegs
+     *
+     * @param n the number of disks
+     */
+    
+    public static void initTowers(int n){
+        pegA = new ArrayList<>(Arrays.asList());
+        pegB = new ArrayList<>();
+        pegC = new ArrayList<>();
+        
+        for(int i = n; i > 0; i--){
+            pegA.add(i);
+        }
+        
     }
 
 
@@ -189,11 +186,6 @@ public class TowerOfHanoi {
 
 
     public static void main(String[] args) {
-        // Pegs
-        pegA = new ArrayList<>(Arrays.asList(3, 2, 1));
-        pegB = new ArrayList<>();
-        pegC = new ArrayList<>();
-
 
         int n = 3; // Start with 3 disks
 
@@ -202,10 +194,13 @@ public class TowerOfHanoi {
 
         // Reset move counter
         moveCount = 0;
+        
+        
+        initTowers(n);
 
         // Solve the puzzle
         moveDisks(n, 'A', 'C', 'B');
-        displayTowers();
+   
 
         // Display statistics
         printStatistics(n);
@@ -213,7 +208,9 @@ public class TowerOfHanoi {
         // Test with different numbers of disks
         System.out.println("\n\n=== Try with 4 disks ===");
         moveCount = 0;
+        initTowers(4);
         moveDisks(4, 'A', 'C', 'B');
         printStatistics(4);
+
     }
 }
