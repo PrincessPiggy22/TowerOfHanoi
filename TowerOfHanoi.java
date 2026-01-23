@@ -54,17 +54,22 @@ public class TowerOfHanoi {
             // move from source to dest
             //moveDisks(n, 'A', 'C', 'B');
             System.out.println("Moving disk " + n + " from " + source + " to " + destination);
+            
+            updateTowers(source, destination);
             displayTowers();
-
         }
         else {
             // TODO: Implement recursive case (3 steps)
             // move n-1 disks to aux
             moveDisks(n - 1, source,auxiliary, destination);
             System.out.println("Moving disk " + n + " from " + source + " to " + destination);
+            updateTowers(source, auxiliary);
+            displayTowers();
 
             // move n-1 to dest
             moveDisks(n - 1, auxiliary,destination,source);
+            updateTowers(auxiliary,destination);
+            displayTowers();
 
         }
 
@@ -90,39 +95,39 @@ public class TowerOfHanoi {
      */
     public static void displayTowers() {
         // TODO: Implement tower visualization
-        System.out.println("\n");
-        System.out.println("--- Tower State ---");
+        //System.out.println("\n");
+        //System.out.println("--- Tower State ---");
 
         // Display pegs A, B, C and their disks
 
-        System.out.print("A: "); // Peg A
-        for (int i = 0; i < pegA.size(); i++) {
-            System.out.print(pegA.get(i));
+        System.out.println("A: " + pegA); // Peg A
+        //for (int i = 0; i < pegA.size(); i++) {
+          //  System.out.print(pegA.get(i));
 
-            if(pegA.size() > 1 && i != pegA.size() - 1){
-                System.out.print(", ");
-            }
-        }
-        System.out.println("\n");
+         //   if(pegA.size() > 1 && i != pegA.size() - 1){
+              //  System.out.print(", ");
+          //  }
+      //  }
+      //  System.out.println("\n");
 
-        System.out.print("B: "); // Peg B
-        for (int i = 0; i < pegB.size(); i++) {
-            System.out.print(pegB.get(i));
+        System.out.println("B: " + pegB); // Peg B
+        //for (int i = 0; i < pegB.size(); i++) {
+          //  System.out.print(pegB.get(i));
 
-            if(pegB.size() > 1 && i != pegB.size() - 1){
-                System.out.print(", ");
-            }
-        }
-        System.out.println("\n");
+          //  if(pegB.size() > 1 && i != pegB.size() - 1){
+               // System.out.print(", ");
+           // }
+     //   }
+       // System.out.println("\n");
 
-        System.out.print("C: "); // Peg C
-        for (int i = 0; i < pegC.size(); i++) {
-            System.out.print(pegC.get(i));
+        System.out.println("C: " + pegC); // Peg C
+       // for (int i = 0; i < pegC.size(); i++) {
+         //   System.out.print(pegC.get(i));
 
-            if(pegC.size() > 1 && i != pegC.size() - 1){
-                System.out.print(", ");
-            }
-        }
+          //  if(pegC.size() > 1 && i != pegC.size() - 1){
+          //      System.out.print(", ");
+          //  }
+      //  }
         System.out.println("\n");
 
     }
